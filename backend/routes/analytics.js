@@ -70,25 +70,3 @@ router.get('/leaderboard', authMiddleware, async (req, res) => {
 module.exports = router;
 
 
-// ── routes/users.js ─────────────────────────────────────────
-const usersRouter = express.Router();
-
-usersRouter.get('/me', authMiddleware, async (req, res) => {
-  try {
-    const [rows] = await db.query(
-      'SELECT id, name, email, role, created_at FROM users WHERE id = ?', [req.user.id]
-    );
-    res.json(rows[0]);
-  } catch (err) { res.status(500).json({ message: err.message }); }
-});
-
-usersRouter.put('/me', authMiddleware, async (req, res) => {
-  const { name } = req.body;
-  try {
-    await db.query('UPDATE users SET name = ? WHERE id = ?', [name, req.user.id]);
-    res.json({ message: 'Profile updated' });
-  } catch (err) { res.status(500).json({ message: err.message }); }
-});
-
-// Export both
-module.exports = { analyticsRouter: router, usersRouter };
