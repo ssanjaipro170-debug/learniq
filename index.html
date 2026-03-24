@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LearnIQ — Login</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="frontend/css/style.css">
   <style>
     body { background: var(--bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
     .login-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; width: 100%; }
@@ -151,7 +151,7 @@
     const role = selectedRole;
 
     try {
-      const res = await fetch('https://learniq-backend-4n34.onrender.comfetch('https://learniq-backend-4n34.onrender.com/api/auth/login',', {
+      const res = await fetch('https://learniq-backend-4n34.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, role })
@@ -160,9 +160,9 @@
       if (res.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        if (role === 'admin') window.location.href = 'pages/admin.html';
-        else if (role === 'instructor') window.location.href = 'pages/dashboard.html';
-        else window.location.href = 'pages/dashboard.html';
+        if (role === 'admin') window.location.href = 'frontend/pages/admin.html';
+        else if (role === 'instructor') window.location.href = 'frontend/pages/dashboard.html';
+        else window.location.href = 'frontend/pages/dashboard.html';
       } else {
         document.getElementById('errorMsg').style.display = 'block';
         document.getElementById('errorMsg').textContent = data.message || 'Login failed.';
