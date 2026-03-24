@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
-const path    = require('path');
 
 const authRoutes       = require('./routes/auth');
 const userRoutes       = require('./routes/users');
@@ -22,9 +21,6 @@ app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '../frontend')));
-
 // ── API Routes ──────────────────────────────────────────────
 app.use('/api/auth',      authRoutes);
 app.use('/api/users',     userRoutes);
@@ -33,9 +29,9 @@ app.use('/api/tests',     testRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/admin',     adminRoutes);
 
-// Catch-all: serve index (SPA fallback)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+// ── Health check ────────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.json({ message: 'LearnIQ API is running!' });
 });
 
 // ── Global error handler ────────────────────────────────────
