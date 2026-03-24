@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnIQ — Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="app-layout">
+  <div id="sidebar-placeholder"></div>
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title">Dashboard</div>
+      <div class="topbar-right">
+        <span id="dateDisplay" style="font-size:13px;color:var(--text-muted);"></span>
+        <div class="avatar" id="topAvatar" style="width:30px;height:30px;font-size:11px;"></div>
+      </div>
+    </div>
+    <div class="page-body">
+
+      <!-- Welcome + AI tip -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:20px;flex-wrap:wrap;">
+        <div>
+          <h2 style="font-size:22px;font-weight:700;margin-bottom:4px;" id="greetingText">Good morning!</h2>
+          <p style="color:var(--text-muted);font-size:14px;">You have <strong>2 tests</strong> due this week. Keep going!</p>
+        </div>
+        <div class="ai-panel" style="flex:1;min-width:260px;max-width:380px;">
+          <div class="ai-panel-title">&#9889; AI Recommendation</div>
+          <p id="aiTip">Loading your personalized tip...</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Overall score</div>
+          <div class="stat-value" style="color:var(--primary);" id="statScore">78%</div>
+          <div class="stat-sub">+4% this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Courses done</div>
+          <div class="stat-value" id="statCourses">5/8</div>
+          <div class="stat-sub">2 in progress</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Class rank</div>
+          <div class="stat-value" style="color:var(--accent);" id="statRank">#14</div>
+          <div class="stat-sub">Out of 120 students</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Study streak</div>
+          <div class="stat-value" style="color:var(--success);" id="statStreak">7 days</div>
+          <div class="stat-sub">Keep it up!</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex-wrap:wrap;">
+        <!-- Upcoming tests -->
+        <div class="card">
+          <div class="card-title">Upcoming Tests</div>
+          <div id="upcomingTests">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);">
+              <div>
+                <p style="font-size:13px;font-weight:500;">Java Programming</p>
+                <p style="font-size:11px;color:var(--text-muted);">20 questions • 30 min</p>
+              </div>
+              <span class="badge badge-red">Due tomorrow</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);">
+              <div>
+                <p style="font-size:13px;font-weight:500;">Aptitude — Quant</p>
+                <p style="font-size:11px;color:var(--text-muted);">30 questions • 45 min</p>
+              </div>
+              <span class="badge badge-amber">3 days left</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+              <div>
+                <p style="font-size:13px;font-weight:500;">Data Structures</p>
+                <p style="font-size:11px;color:var(--text-muted);">25 questions • 40 min</p>
+              </div>
+              <span class="badge badge-green">5 days left</span>
+            </div>
+          </div>
+          <a href="test.html"><button class="btn btn-primary" style="width:100%;margin-top:12px;justify-content:center;">Start a Test</button></a>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="card">
+          <div class="card-title">Recent Activity</div>
+          <div id="recentActivity">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--success);flex-shrink:0;"></div>
+              <div style="flex:1;">
+                <p style="font-size:13px;">Completed Aptitude Mock Test</p>
+                <p style="font-size:11px;color:var(--text-muted);">Score: 92% • 2 hours ago</p>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0;"></div>
+              <div style="flex:1;">
+                <p style="font-size:13px;">Watched Java OOP lecture</p>
+                <p style="font-size:11px;color:var(--text-muted);">Chapter 4 • Yesterday</p>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 0;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+              <div style="flex:1;">
+                <p style="font-size:13px;">Earned "7-day streak" badge</p>
+                <p style="font-size:11px;color:var(--text-muted);">Achievement unlocked • Yesterday</p>
+              </div>
+            </div>
+          </div>
+          <a href="analytics.html"><button class="btn btn-secondary" style="width:100%;margin-top:12px;justify-content:center;">View Full Analytics</button></a>
+        </div>
+      </div>
+
+      <!-- Course progress -->
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">Course Progress</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;" id="courseProgress">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="../js/sidebar.js"></script>
+<script>
+  authGuard();
+  injectSidebar('dashboard');
+
+  const user = JSON.parse(localStorage.getItem('user') || '{"name":"Student"}');
+  document.getElementById('topAvatar').textContent = user.name.split(' ').map(n=>n[0]).join('').toUpperCase();
+
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('greetingText').textContent = `${greeting}, ${user.name.split(' ')[0]}!`;
+  document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long'});
+
+  const tips = [
+    'You scored low in Data Structures — practice 3 problems today to boost your rank.',
+    'Your Aptitude score is great! Focus on DBMS next to balance your overall score.',
+    'You\'re on a 7-day streak. Spend 20 min on OS Concepts today to stay ahead.',
+  ];
+  document.getElementById('aiTip').textContent = tips[Math.floor(Math.random() * tips.length)];
+
+  const courses = [
+    {title:'Java Programming', pct:72, color:'#1a56db'},
+    {title:'Data Structures', pct:45, color:'#ef4444'},
+    {title:'Aptitude', pct:90, color:'#10b981'},
+    {title:'DBMS', pct:30, color:'#f59e0b'},
+  ];
+  document.getElementById('courseProgress').innerHTML = courses.map(c => `
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:13px;font-weight:500;">${c.title}</span>
+        <span style="font-size:12px;color:var(--text-muted);">${c.pct}%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${c.pct}%;background:${c.color};"></div></div>
+    </div>
+  `).join('');
+</script>
+</body>
+</html>
