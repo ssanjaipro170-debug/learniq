@@ -28,11 +28,18 @@ app.use('/api/tests',     testRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/admin',     adminRoutes);
 
-// Catch-all: serve index (SPA fallback)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+  res.json({ message: 'LearnIQ API is running!' });
 });
+```
 
+Then commit and redeploy!
+
+---
+
+But more importantly — **your backend API is LIVE at:**
+```
+https://learniq-backend-4n34.onrender.com
 // ── Global error handler ────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.stack);
